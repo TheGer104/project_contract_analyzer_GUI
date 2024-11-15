@@ -51,7 +51,7 @@ El proyecto cuenta con dos modos de uso:
 **Funcionalidades**
 - Selección de contratos: Permite al usuario seleccionar archivos de contrato en Solidity para analizar.
 - Elección del formato de reporte: Actualmente soporta JSON,CSV o HTML.
-- Ejecución del análisis: Analiza el contrato usando Mythril y otros métodos de análisis.
+- Ejecución del análisis: Analiza el contrato usando Mythril y otros métodos de análisis internos.
 - Generación de reportes: Los reportes se guardan en la carpeta reports y tienen nombres únicos basados en el nombre del contrato y la fecha de análisis.
 
 **Configuración y Personalización**
