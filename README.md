@@ -29,18 +29,18 @@ El proyecto cuenta con dos modos de uso:
    ```bash
    git clone https://github.com/TuUsuario/TuRepositorio.git
    cd TuRepositorio
-  ```bash
+  
 
 2. **Instalar las dependencias:**
     ```bash
     python -m pip install --upgrade pip
     pip install -r requirements.txt
-  ```bash
+    
 
 3. **Ejecutar la interfaz gráfica:**
     ```bash
     python src/main.py
-  ```bash
+    
 
 3. **Usar la interfaz:**
 - **Paso 1**: Al abrir la aplicación, verás la pantalla de inicio.
