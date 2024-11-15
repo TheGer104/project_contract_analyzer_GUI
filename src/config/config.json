@@ -7,5 +7,8 @@
         "vulnerability_detection": true
     },
     "output_format": "json",
-    "output_path": "reports/"
+    "output_path": "reports/",
+    "contracts_dir": "tests/contracts"
+    
 }
+

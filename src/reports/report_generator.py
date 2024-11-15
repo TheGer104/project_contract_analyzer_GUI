@@ -1,22 +1,31 @@
 import os
 import json
 import csv
+from datetime import datetime
 import pandas as pd  
 
 class ReportGenerator:
-    def __init__(self, config):
-        self.output_path = config.get("output_path", "reports/")
-        os.makedirs(self.output_path, exist_ok=True)
+    def __init__(self, output_dir="src/reports", output_format="json"):
+        self.output_dir = output_dir
+        self.output_format = output_format
+        # Crea la carpeta de salida si no existe
+        if not os.path.exists(self.output_dir):
+            os.makedirs(self.output_dir)
 
-    def generate_report(self, data, format="json"):
-        if format == "json":
-            self._generate_json_report(data)
-        elif format == "csv":
-            self._generate_csv_report(data)
-        elif format == "html":
-            self._generate_html_report(data)
+    def generate_report(self, analysis_results, contract_name):
+        # Genera el nombre del archivo con el nombre del contrato y la fecha/hora actual
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        filename = f"{contract_name}_{timestamp}.{self.output_format}"
+        output_path = os.path.join(self.output_dir, filename)
+
+        if self.output_format == "json":
+            with open(output_path, 'w') as f:
+                json.dump(analysis_results, f, indent=4)
+            print(f"Reporte generado en formato JSON para {contract_name}. Archivo: {output_path}")
         else:
-            raise ValueError("Formato no soportado. Usa 'json', 'csv' o 'html'.")
+            print("Formato de reporte no soportado")
+
+        return output_path  # Retorna la ruta del archivo generado
 
     def _generate_json_report(self, data):
         filepath = os.path.join(self.output_path, "report.json")

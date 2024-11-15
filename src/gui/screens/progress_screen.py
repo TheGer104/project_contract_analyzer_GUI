@@ -42,7 +42,7 @@ class ProgressScreen(tk.Frame):
         self.main_window.analysis_results = analysis_results
 
         # Genera el reporte en el formato seleccionado
-        self.main_window.report_generator.generate_report(analysis_results, format=self.main_window.report_format)
+        self.main_window.report_generator.generate_report(analysis_results, contract_name=self.main_window.selected_contract)
 
         # Muestra la pantalla de resultados
         self.main_window.show_results_screen()

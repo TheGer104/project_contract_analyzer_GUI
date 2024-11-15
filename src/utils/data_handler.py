@@ -4,7 +4,10 @@ import os
 
 class DataHandler:
     def __init__(self, config):
-        self.config = config
+        # Configura la ruta de contratos basada en la configuración
+        self.contracts_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../tests/contracts'))
+        if not os.path.exists(self.contracts_dir):
+            os.makedirs(self.contracts_dir)
 
     def load_config(self, filepath):
         """Load configuration for analysis."""
@@ -26,9 +29,10 @@ class DataHandler:
         
         return contract_code
     
-    def list_contracts(self, directory):
-        """List all Solidity (.sol) files in the contracts directory."""
-        return [f for f in os.listdir(directory) if f.endswith('.sol')]
+    def list_contracts(self):
+        # Lista los archivos de contrato dentro de la ruta configurada
+        return [f for f in os.listdir(self.contracts_dir) if f.endswith('.sol')]
+
 
     def select_contract(self, contracts):
         """Allow the user to select a contract from the list."""

@@ -16,15 +16,16 @@ class MainWindow(tk.Tk):
         self.title("Contract Analyzer")
         self.geometry("800x600")
 
+        # Configuración de la ruta de contratos
         self.contracts_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../tests/contracts'))
         if not os.path.exists(self.contracts_dir):
             os.makedirs(self.contracts_dir)
 
         # Inicializa el resto de componentes necesarios aquí, como data_handler, contract_analyzer, etc.
         self.config = load_config()
-        self.data_handler = DataHandler(self.config)
+        self.data_handler = DataHandler(self.config) 
         self.contract_analyzer = ContractAnalyzer(self.config)
-        self.report_generator = ReportGenerator(self.config)
+        self.report_generator = ReportGenerator(output_dir="reports")
 
         self.selected_contract = None
         self.analysis_mode = None
@@ -38,13 +39,11 @@ class MainWindow(tk.Tk):
         self.clear_window()
         StartScreen(self).pack(fill="both", expand=True)
 
-
     def show_contract_selection_screen(self):
         self.clear_window()
-        contracts_dir = os.path.abspath('../tests/contracts')  # Asegura la ruta completa
-        contracts = self.data_handler.list_contracts(contracts_dir)
+        # Llama a list_contracts sin especificar la ruta, ya que ahora se maneja dentro de DataHandler
+        contracts = self.data_handler.list_contracts()
         ContractSelectionScreen(self, self, contracts).pack(fill="both", expand=True)
-
 
     def show_report_format_screen(self):
         self.clear_window()
@@ -61,4 +60,3 @@ class MainWindow(tk.Tk):
     def clear_window(self):
         for widget in self.winfo_children():
             widget.destroy()  # Destruye todos los widgets en la ventana principal
-
