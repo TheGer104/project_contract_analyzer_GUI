@@ -45,8 +45,8 @@ El proyecto cuenta con dos modos de uso:
 3. **Usar la interfaz:**
 - **Paso 1**: Al abrir la aplicación, verás la pantalla de inicio.
 - **Paso 2**: Selecciona los contratos que deseas analizar en la sección de selección de contratos.
-- **Paso 3**: Selecciona el formato de reporte en el cual deseas obtener los resultados (actualmente solo JSON).
-- **Paso 4:** Haz clic en "Iniciar Análisis" para comenzar el proceso. El programa ejecutará el análisis en cada contrato seleccionado y generará un reporte para cada uno en la carpeta   reports.
+- **Paso 3**: Selecciona el formato de reporte en el cual deseas obtener los resultados (JSON,CSV o HTML).
+- **Paso 4:** Haz clic en "Iniciar Análisis" para comenzar el proceso. El programa ejecutará el análisis en cada contrato seleccionado y generará un reporte para cada uno en la carpeta reports.
   
 **Funcionalidades**
 - Selección de contratos: Permite al usuario seleccionar archivos de contrato en Solidity para analizar.
