@@ -27,10 +27,14 @@ class MainWindow(tk.Tk):
         self.contract_analyzer = ContractAnalyzer(self.config)
         self.report_generator = ReportGenerator(output_dir="reports")
 
+        # Variables para almacenar selección de contrato, modo de análisis y formato de reporte
         self.selected_contract = None
         self.analysis_mode = None
         self.report_format = None
         self.analysis_results = None
+
+        # Carga la lista de contratos disponibles
+        self.contracts = self.data_handler.list_contracts()
 
         # Llama al método de inicio de pantalla
         self.show_start_screen()
@@ -41,9 +45,8 @@ class MainWindow(tk.Tk):
 
     def show_contract_selection_screen(self):
         self.clear_window()
-        # Llama a list_contracts sin especificar la ruta, ya que ahora se maneja dentro de DataHandler
-        contracts = self.data_handler.list_contracts()
-        ContractSelectionScreen(self, self, contracts).pack(fill="both", expand=True)
+        # Pasar la lista de contratos directamente a ContractSelectionScreen
+        ContractSelectionScreen(self, self, self.contracts).pack(fill="both", expand=True)
 
     def show_report_format_screen(self):
         self.clear_window()

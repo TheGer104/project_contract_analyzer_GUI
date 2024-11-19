@@ -18,6 +18,10 @@ class ReportFormatScreen(tk.Frame):
         html_button = tk.Button(self, text="HTML", command=lambda: self.select_format("html"), bg="#FF5722", fg="white")
         html_button.pack(pady=10)
 
+        # Botón de retroceso a la selección de tipo de análisis
+        back_button = tk.Button(self, text="Back", command=self.main_window.show_contract_selection_screen, bg="#D32F2F", fg="white")
+        back_button.pack(side="left", padx=20, pady=20)
+
     def select_format(self, format):
         self.main_window.report_format = format
         self.main_window.show_progress_screen()

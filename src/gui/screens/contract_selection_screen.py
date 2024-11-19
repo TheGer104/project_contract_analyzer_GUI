@@ -14,6 +14,10 @@ class ContractSelectionScreen(tk.Frame):
             contract_button = tk.Button(self, text=contract, command=lambda c=contract: self.select_contract(c), bg="#4CAF50", fg="white")
             contract_button.pack(pady=10)
 
+        # Botón de retroceso a la pantalla principal
+        back_button = tk.Button(self, text="Back", command=self.main_window.show_start_screen, bg="#D32F2F", fg="white")
+        back_button.pack(side="left", padx=20, pady=20)
+
     def select_contract(self, contract):
         self.main_window.selected_contract = contract
         self.show_analysis_type_screen()
@@ -32,6 +36,10 @@ class ContractSelectionScreen(tk.Frame):
         # Botón para análisis complejo
         complex_analysis_button = tk.Button(self, text="Complex Analysis", command=self.complex_analysis, bg="#FF5722", fg="white")
         complex_analysis_button.pack(pady=10)
+
+        # Botón de retroceso a la selección de contrato
+        back_button = tk.Button(self, text="Back", command=self.__init__, bg="#D32F2F", fg="white")
+        back_button.pack(side="left", padx=20, pady=20)
 
     def basic_analysis(self):
         self.main_window.analysis_mode = "basic"

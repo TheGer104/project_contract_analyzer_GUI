@@ -24,27 +24,14 @@ class ProgressScreen(tk.Frame):
             self.complete_analysis()
 
     def complete_analysis(self):
-        # Define la ruta del contrato en función de `contracts_dir`
         contract_path = os.path.join(self.main_window.contracts_dir, self.main_window.selected_contract)
-        
-        # Carga el código del contrato desde la ruta especificada
         contract_code = self.main_window.data_handler.load_contract(contract_path)
 
-        # Selecciona el modo de análisis
         if self.main_window.analysis_mode == "basic":
-            # Realiza el análisis básico (simbolico, dinámico, estático y detección de vulnerabilidades)
             analysis_results = self.main_window.contract_analyzer.full_analysis(contract_code)
         elif self.main_window.analysis_mode == "complex":
-            # Realiza el análisis completo, incluyendo el análisis con Mythril
             analysis_results = self.main_window.contract_analyzer.complex_analysis(contract_code, contract_path)
 
-        # Asigna los resultados del análisis a `analysis_results` en `MainWindow`
         self.main_window.analysis_results = analysis_results
-
-        # Genera el reporte en el formato seleccionado
         self.main_window.report_generator.generate_report(analysis_results, contract_name=self.main_window.selected_contract)
-
-        # Muestra la pantalla de resultados
         self.main_window.show_results_screen()
-
-

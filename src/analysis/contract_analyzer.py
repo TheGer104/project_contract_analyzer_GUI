@@ -65,30 +65,30 @@ class ContractAnalyzer:
         """Run Mythril analysis on the selected contract."""
         print(f"Running Mythril analysis on {contract_path}...")
         try:
+            # Cambiamos el comando de Mythril
             result = subprocess.check_output(
-                [self.mythril_path, "analyze", contract_path, "-o", "json"],
+                ["myth", "analyze", contract_path],
                 stderr=subprocess.STDOUT,
                 text=True
             )
-            mythril_output = json.loads(result)
-            if "issues" in mythril_output:
-                print("Analysis completed successfully with issues found.")
-                return {"mythril_analysis": mythril_output}  # Devuelve los resultados de Mythril directamente
-            else:
-                print("Analysis completed successfully without any issues.")
-                return {"mythril_analysis": {"success": True, "issues": []}}
+
+            # Intentamos cargar el resultado como JSON
+            try:
+                mythril_output = json.loads(result)
+                print("Mythril JSON output parsed successfully.")
+                return {"mythril_analysis": mythril_output}
+            except json.JSONDecodeError:
+                # En caso de error, capturamos el resultado en texto
+                print("Error decoding JSON from Mythril output. Storing raw text output.")
+                return {"mythril_analysis_raw": result}
 
         except subprocess.CalledProcessError as e:
-            print("Analysis Completed.")
+            print("Analysis completed. Full output below:")
+            print(e.output)
+            # Intentamos capturar el error como JSON o lo guardamos como texto
             try:
                 mythril_output = json.loads(e.output)
-                
-                if "issues" in mythril_output:
-                    return {"mythril_analysis": mythril_output}
-                else:
-                    print("No issues found in output.")
-                    return {"mythril_analysis": {"success": True, "issues": []}}
+                return {"mythril_analysis": mythril_output}
             except json.JSONDecodeError:
-                print("Error decoding JSON from Mythril output.")
-                return {"Completed": "Executed with no errors.", "details": e.output}
+                return {"mythril_analysis_raw": e.output}
 
