@@ -29,20 +29,46 @@ El proyecto cuenta con dos modos de uso:
    ```bash
    git clone https://github.com/TuUsuario/TuRepositorio.git
    cd TuRepositorio
-  ```bash
 
 2. **Instalar las dependencias:**
     ```bash
     python -m pip install --upgrade pip
     pip install -r requirements.txt
-  ```bash
 
 3. **Ejecutar la interfaz gráfica:**
     ```bash
     python src/main.py
-  ```bash
 
-3. **Usar la interfaz:**
+**Nota**: Esta aplicación funciona en **Linux** y **macOS**. Para **Windows**, se requiere instalar **WSL (Windows Subsystem for Linux)** y configurar un entorno virtual `venv`. A continuación, se incluyen las instrucciones para instalar WSL y configurar el entorno en Windows.
+
+#### Configuración en Windows (WSL y venv)
+
+1. **Instalar WSL**:
+   Abre PowerShell como administrador y ejecuta:
+   ```powershell
+   wsl --install
+
+2. **Instalar una distribución de Linux:** Desde Microsoft Store, instala Ubuntu (o la distribución de Linux de tu preferencia) y configúrala siguiendo las instrucciones en pantalla.
+
+3. **Actualizar los paquetes en WSL:** Abre la terminal de Ubuntu en WSL y ejecuta:
+   ```bash
+    sudo apt update && sudo apt upgrade
+
+3. **Instalar Python y pip en WSL:** Si Python no está preinstalado, instala Python ejecutando:
+    ```bash
+    sudo apt install python3 python3-pip
+    
+4. **Crear un entorno virtual `venv`:** Dentro de la terminal de WSL, navega al directorio de tu proyecto y crea un entorno virtual:
+    ```bash
+    python3 -m venv venv
+
+5. **Activar el entorno virtual:**
+    ```bash
+    source venv/bin/activate
+
+6. Seguir las mismas instrucciones que para `Linux` o `MacOS`.
+
+7. **Usar la interfaz:**
 - **Paso 1**: Al abrir la aplicación, verás la pantalla de inicio.
 - **Paso 2**: Selecciona los contratos que deseas analizar en la sección de selección de contratos.
 - **Paso 3**: Selecciona el formato de reporte en el cual deseas obtener los resultados (actualmente solo JSON).
