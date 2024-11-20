@@ -1,0 +1,22 @@
+{
+    "static_analysis": {
+        "length_check": true,
+        "has_fallback": false,
+        "uses_require_or_assert": true
+    },
+    "symbolic_analysis": {
+        "complexity": true
+    },
+    "dynamic_analysis": {
+        "loops": false
+    },
+    "vulnerabilities": {
+        "reentrancy_vulnerable": false,
+        "integer_overflow": true,
+        "tx_origin": false
+    },
+    "mythril_analysis": {
+        "mythril_analysis_raw": "==== Unprotected Ether Withdrawal ====\nSWC ID: 105\nSeverity: High\nContract: OverFlowVulnerableContract\nFunction name: withdraw(uint256)\nPC address: 762\nEstimated Gas Usage: 7888 - 62549\nAny sender can withdraw Ether from the contract account.\nArbitrary senders other than the contract creator can profitably extract Ether from the contract account. Verify the business logic carefully and make sure that appropriate security controls are in place to prevent unexpected loss of funds.\n--------------------\nIn file: /mnt/c/Users/thege/OneDrive/Documentos/projecte_analisi_contractes/tests/contracts/OverFlowVulnerableContract.sol:20\n\nmsg.sender.transfer(amount)\n\n--------------------\nInitial State:\n\nAccount: [CREATOR], balance: 0x0, nonce:0, storage:{}\nAccount: [ATTACKER], balance: 0xd424b9d356c18908, nonce:0, storage:{}\n\nTransaction Sequence:\n\nCaller: [CREATOR], calldata: , decoded_data: , value: 0x0\nCaller: [ATTACKER], function: unsafeIncrement(uint256), txdata: 0x8de03d528000000000000000000000000000000000000000000000000000000000000000, decoded_data: (57896044618658097711785492504343953926634992332820282019728792003956564819968,), value: 0x0\nCaller: [ATTACKER], function: withdraw(uint256), txdata: 0x2e1a7d4d0000000000000000000000000000000000000000000000000000000400006002, decoded_data: (17179893762,), value: 0x0\n\n==== Integer Arithmetic Bugs ====\nSWC ID: 101\nSeverity: High\nContract: OverFlowVulnerableContract\nFunction name: unsafeIncrement(uint256)\nPC address: 895\nEstimated Gas Usage: 6205 - 26490\nThe arithmetic operator can overflow.\nIt is possible to cause an integer overflow or underflow in the arithmetic operation. \n--------------------\nIn file: /mnt/c/Users/thege/OneDrive/Documentos/projecte_analisi_contractes/tests/contracts/OverFlowVulnerableContract.sol:25\n\nbalances[msg.sender] += amount\n\n--------------------\nInitial State:\n\nAccount: [CREATOR], balance: 0x0, nonce:0, storage:{}\nAccount: [ATTACKER], balance: 0x0, nonce:0, storage:{}\n\nTransaction Sequence:\n\nCaller: [CREATOR], calldata: , decoded_data: , value: 0x0\nCaller: [ATTACKER], function: unsafeIncrement(uint256), txdata: 0x8de03d522004000000041000000000000000000020000000000000000000000100020004, decoded_data: (14481078542925309180830735665975523796340628123764313379811140356276291239940,), value: 0x0\nCaller: [ATTACKER], function: unsafeIncrement(uint256), txdata: 0x8de03d52dffbfffffffc0000800040800004008004040480002000200210802080020800, decoded_data: (101311010694390911956887532486565257964694524248004944513780023124104134658048,), value: 0x0\n\n==== Integer Arithmetic Bugs ====\nSWC ID: 101\nSeverity: High\nContract: OverFlowVulnerableContract\nFunction name: deposit()\nPC address: 975\nEstimated Gas Usage: 6118 - 26403\nThe arithmetic operator can overflow.\nIt is possible to cause an integer overflow or underflow in the arithmetic operation. \n--------------------\nIn file: /mnt/c/Users/thege/OneDrive/Documentos/projecte_analisi_contractes/tests/contracts/OverFlowVulnerableContract.sol:13\n\nbalances[msg.sender] += msg.value\n\n--------------------\nInitial State:\n\nAccount: [CREATOR], balance: 0x0, nonce:0, storage:{}\nAccount: [ATTACKER], balance: 0x41e01000000000002, nonce:0, storage:{}\n\nTransaction Sequence:\n\nCaller: [CREATOR], calldata: , decoded_data: , value: 0x0\nCaller: [SOMEGUY], function: unsafeIncrement(uint256), txdata: 0x8de03d52ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff, decoded_data: (115792089237316195423570985008687907853269984665640564039457584007913129639935,), value: 0x0\nCaller: [SOMEGUY], function: deposit(), txdata: 0xd0e30db0, value: 0x1\n\n\n"
+    },
+    "report_message": "Reporte generado en formato JSON para OverFlowVulnerableContract.sol. Archivo: reports/OverFlowVulnerableContract.sol_20241120_121643.json"
+}

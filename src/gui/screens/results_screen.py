@@ -18,9 +18,13 @@ class ResultsScreen(tk.Frame):
         self.results_text.tag_configure("header", foreground="blue", font=("TkDefaultFont", 10, "bold"))
         self.results_text.tag_configure("body", font=("TkDefaultFont", 9))
         self.results_text.tag_configure("separator", font=("TkDefaultFont", 8, "italic"))
+        self.results_text.tag_configure("report_message", font=("TkDefaultFont", 9, "italic"), foreground="gray")
 
         # Insertar los resultados formateados en el área de texto
         self.format_and_insert_results()
+
+        # Mostrar el mensaje final sobre el reporte
+        self.display_report_message()
 
         # Botones de navegación
         menu_button = tk.Button(self, text="Menu", command=self.main_window.show_start_screen, bg="green", fg="white")
@@ -46,8 +50,8 @@ class ResultsScreen(tk.Frame):
         # Insertar la información de análisis básico
         self.results_text.insert(tk.END, "Basic Analysis:\n", "header")
         for section, details in results.items():
-            if section == "mythril_analysis":
-                continue  # Omitir el análisis de Mythril aquí, ya que se procesará por separado
+            if section == "mythril_analysis" or section == "report_message":
+                continue  # Omitir el análisis de Mythril y el mensaje del reporte aquí
             self.results_text.insert(tk.END, f"\n{section.capitalize()}:\n", "title")
             for key, value in details.items():
                 self.results_text.insert(tk.END, f"  {key}: {value}\n", "body")
@@ -83,3 +87,10 @@ class ResultsScreen(tk.Frame):
         
         # Separar secciones con espacios
         self.results_text.insert(tk.END, "\n\n", "body")
+
+    def display_report_message(self):
+        # Mostrar el mensaje del reporte generado sobre el botón "Menu"
+        if hasattr(self.main_window, 'analysis_results') and "report_message" in self.main_window.analysis_results:
+            report_message = self.main_window.analysis_results["report_message"]
+            message_label = tk.Label(self, text=report_message, font=("TkDefaultFont", 9, "italic"), fg="gray", bg="#f0f0f0")
+            message_label.pack(side="bottom", pady=5)
