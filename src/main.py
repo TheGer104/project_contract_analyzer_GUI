@@ -1,5 +1,7 @@
 import os
 import json
+import warnings
+warnings.filterwarnings("ignore", category=SyntaxWarning)
 
 from src.config.config_loader import load_config
 from src.utils.data_handler import DataHandler

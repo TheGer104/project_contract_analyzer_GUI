@@ -1,0 +1,33 @@
+{
+    "static_analysis": {
+        "length_check": true,
+        "has_fallback": false,
+        "uses_require_or_assert": true,
+        "public_without_require": true,
+        "has_events": false,
+        "pragma_version": true
+    },
+    "symbolic_analysis": {
+        "complexity": true,
+        "nested_blocks": false,
+        "unused_variables": true,
+        "unreachable_functions": false
+    },
+    "dynamic_analysis": {
+        "loops": true,
+        "direct_storage_access": false,
+        "gas_intensive_functions": false
+    },
+    "vulnerabilities": {
+        "reentrancy_vulnerable": true,
+        "integer_overflow": true,
+        "tx_origin": true,
+        "variable_shadowing": false,
+        "unsafe_arithmetic": false,
+        "selfdestruct_detected": false
+    },
+    "mythril_analysis": {
+        "mythril_analysis_raw": "==== Integer Arithmetic Bugs ====\nSWC ID: 101\nSeverity: High\nContract: VulnerableContract\nFunction name: fallback\nPC address: 129\nEstimated Gas Usage: 5872 - 25967\nThe arithmetic operator can overflow.\nIt is possible to cause an integer overflow or underflow in the arithmetic operation. \n--------------------\nIn file: /mnt/c/Users/thege/OneDrive/Documentos/projecte_analisi_contractes/tests/contracts/VulnerableContract.sol:15\n\nbalance += msg.value\n\n--------------------\nInitial State:\n\nAccount: [CREATOR], balance: 0x40000000000000000, nonce:0, storage:{}\nAccount: [ATTACKER], balance: 0x0, nonce:0, storage:{}\n\nTransaction Sequence:\n\nCaller: [CREATOR], calldata: , decoded_data: , value: 0x0\nCaller: [ATTACKER], function: incrementBalance(uint256), txdata: 0xb32fe94fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff, decoded_data: (115792089237316195423570985008687907853269984665640564039457584007913129639935,), value: 0x0\nCaller: [CREATOR], function: unknown, txdata: 0x, decoded_data: , value: 0x1\n\n==== Dependence on tx.origin ====\nSWC ID: 115\nSeverity: Low\nContract: VulnerableContract\nFunction name: withdraw(uint256)\nPC address: 549\nEstimated Gas Usage: 1093 - 1518\nUse of tx.origin as a part of authorization control.\nThe tx.origin environment variable has been found to influence a control flow decision. Note that using tx.origin as a security control might cause a situation where a user inadvertently authorizes a smart contract to perform an action on their behalf. It is recommended to use msg.sender instead.\n--------------------\nIn file: /mnt/c/Users/thege/OneDrive/Documentos/projecte_analisi_contractes/tests/contracts/VulnerableContract.sol:20\n\nrequire(msg.sender == owner, \"Only owner can withdraw\")\n\n--------------------\nInitial State:\n\nAccount: [CREATOR], balance: 0x0, nonce:0, storage:{}\nAccount: [ATTACKER], balance: 0x0, nonce:0, storage:{}\n\nTransaction Sequence:\n\nCaller: [CREATOR], calldata: , decoded_data: , value: 0x0\nCaller: [SOMEGUY], function: withdraw(uint256), txdata: 0x2e1a7d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d, decoded_data: (34964670083424890382803787630074387861575642428448327180542093994546317577549,), value: 0x0\n\n==== Dependence on tx.origin ====\nSWC ID: 115\nSeverity: Low\nContract: VulnerableContract\nFunction name: privilegedAction()\nPC address: 971\nEstimated Gas Usage: 1033 - 1458\nUse of tx.origin as a part of authorization control.\nThe tx.origin environment variable has been found to influence a control flow decision. Note that using tx.origin as a security control might cause a situation where a user inadvertently authorizes a smart contract to perform an action on their behalf. It is recommended to use msg.sender instead.\n--------------------\nIn file: /mnt/c/Users/thege/OneDrive/Documentos/projecte_analisi_contractes/tests/contracts/VulnerableContract.sol:32\n\nrequire(tx.origin == owner, \"Only owner can call this function\")\n\n--------------------\nInitial State:\n\nAccount: [CREATOR], balance: 0x0, nonce:0, storage:{}\nAccount: [ATTACKER], balance: 0x0, nonce:0, storage:{}\n\nTransaction Sequence:\n\nCaller: [CREATOR], calldata: , decoded_data: , value: 0x0\nCaller: [ATTACKER], function: privilegedAction(), txdata: 0x5db7414c, value: 0x0\n\n==== Integer Arithmetic Bugs ====\nSWC ID: 101\nSeverity: High\nContract: VulnerableContract\nFunction name: incrementBalance(uint256)\nPC address: 1167\nEstimated Gas Usage: 6138 - 26233\nThe arithmetic operator can overflow.\nIt is possible to cause an integer overflow or underflow in the arithmetic operation. \n--------------------\nIn file: /mnt/c/Users/thege/OneDrive/Documentos/projecte_analisi_contractes/tests/contracts/VulnerableContract.sol:27\n\nbalance += amount\n\n--------------------\nInitial State:\n\nAccount: [CREATOR], balance: 0x0, nonce:0, storage:{}\nAccount: [ATTACKER], balance: 0x0, nonce:0, storage:{}\n\nTransaction Sequence:\n\nCaller: [CREATOR], calldata: , decoded_data: , value: 0x0\nCaller: [SOMEGUY], function: incrementBalance(uint256), txdata: 0xb32fe94f8000008000808020100200400100800200020400088004200404100102800103, decoded_data: (57896048069584133142231096012145998607731451687761033008366540201992325693699,), value: 0x0\nCaller: [ATTACKER], function: incrementBalance(uint256), txdata: 0xb32fe94f8000000000810000000000000000000000020000000004000000000000000000, decoded_data: (57896044618711165233759101399203451682772477271199692339940197947020796755968,), value: 0x0\n\n\n"
+    },
+    "report_message": "Reporte generado en formato JSON para VulnerableContract.sol. Archivo: reports/VulnerableContract.sol_20241121_135845.json"
+}
