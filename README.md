@@ -19,7 +19,7 @@ El proyecto cuenta con dos modos de uso:
 ### Requisitos
 
 - Python 3.10 o superior
-- `tkinter` para la interfaz gráfica
+- `tkinter` para la interfaz gráfica 
 - Dependencias listadas en `requirements.txt` (instalarlas con `pip install -r requirements.txt`)
 - Mythril (instalar con `pip install mythril`)
 
@@ -35,7 +35,19 @@ El proyecto cuenta con dos modos de uso:
     python -m pip install --upgrade pip
     pip install -r requirements.txt
 
-3. **Ejecutar la interfaz gráfica:**
+3. **Crear un entorno virtual `venv`:** Dentro de la terminal, navega al directorio de tu proyecto y crea un entorno virtual:
+    ```bash
+    python3 -m venv venv
+
+4. **Activar el entorno virtual:**
+    ```bash
+    source venv/bin/activate
+    
+5. **Activar el path del proyecto, como path principal para python:**
+    ```bash
+    export PYTHONPATH=$PYTHONPATH:/mypath (introduce el path de tu proyecto)/project_contract_analyzer_GUI
+
+6. **Ejecutar la interfaz gráfica:**
     ```bash
     python src/main.py
 
@@ -65,10 +77,14 @@ El proyecto cuenta con dos modos de uso:
 5. **Activar el entorno virtual:**
     ```bash
     source venv/bin/activate
+    
+6. **Activar el path del proyecto, como path principal para python:**
+    ```bash
+    export PYTHONPATH=$PYTHONPATH:/mypath (introduce el path de tu proyecto)/project_contract_analyzer_GUI
 
-6. Seguir las mismas instrucciones que para `Linux` o `MacOS`.
+7. Seguir las mismas instrucciones que para `Linux` o `MacOS`.
 
-7. **Usar la interfaz:**
+8. **Usar la interfaz:**
 - **Paso 1**: Al abrir la aplicación, verás la pantalla de inicio.
 - **Paso 2**: Selecciona los contratos que deseas analizar en la sección de selección de contratos.
 - **Paso 3**: Selecciona el formato de reporte en el cual deseas obtener los resultados (actualmente solo JSON).
