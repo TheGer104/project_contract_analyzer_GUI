@@ -10,7 +10,7 @@ class StartScreen(tk.Frame):
 
     def create_widgets(self):
         # Etiqueta de título
-        title_label = tk.Label(self, text="Contract Analyzer", font=("Arial", 24, "bold"), bg="#D3D3D3")
+        title_label = tk.Label(self, text="Smart Contract Analyzer", font=("Arial", 24, "bold"), bg="#D3D3D3")
         title_label.pack(pady=20)
 
         # Botón de Start
