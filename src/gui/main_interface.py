@@ -13,7 +13,7 @@ from src.reports.report_generator import ReportGenerator
 class MainWindow(tk.Tk):
     def __init__(self):
         super().__init__()
-        self.title("Contract Analyzer")
+        self.title("Smart Contract Analyzer")
         self.geometry("800x600")
 
         # Configuración de la ruta de contratos
